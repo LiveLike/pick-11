@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
 <head>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
@@ -13,6 +13,16 @@
 <script src="./scripts/right_pane.js"></script>
 <script src="./scripts/left_pane.js"></script>
 
+<style>
+  button[remove] > img{
+    content:url("./close.png")   
+  }
+
+  button > img{
+    content:url("./add.png")   
+  }
+
+</style>
 </head>
 <body>
     <div class="d-flex flex-row">
@@ -54,6 +64,9 @@
       </div>
     </div>
     <script>
+      data = {
+        programId : "665f9294-71f3-4b49-9beb-b248026d14d0"
+      }
       widgetsArray = []
       initLiveLike()
       document.querySelector("#submit").onclick = submitVotes

@@ -7,7 +7,7 @@ function removeFromRightPane(tag, optionId){
 
 function addToRightPane(tag, optionId, player_data){
    // player_data = JSON.parse(player_data)
-    let container = document.querySelector("#"+tag+"_container")
+    let container = document.querySelector(`#${tag.toLowerCase()}_container`)
     let div = document.createElement('div')
     div.setAttribute('class','col')
     div.setAttribute('option_id',optionId)
