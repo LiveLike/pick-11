@@ -85,8 +85,8 @@ function createList() {
                 </div>
                 <p class="mb-1">Age:${player.age} | Club: ${player.club}</p>
             </div>
-            <button tag=${player.tag} player = ${escape(JSON.stringify(player))} optionId=${player.optionId} class="ml-auto" style="background: transparent;border: none;" onclick="select(this)">
-                   <img ></img>
+            <button tag=${player.tag} player = ${escape(JSON.stringify(player))} optionId=${player.optionId} class="ml-auto left-pane-btn" style="background: transparent;border: none;" onclick="select(this)">
+                   <img></img>
             </button>
         </div>
         `;
@@ -109,7 +109,6 @@ function processSelection(tag, optionId, player_info){
         selectedArr.splice(optionIndex, 1)
         widgetsMap.set(tag,selectedArr)
         document.querySelector(`[optionid='${optionId}']`).removeAttribute('remove')
-        //document.querySelector(`button[optionid=${optionId}]`).removeAttribute('remove')
         removeFromRightPane(tag, optionId)
     } else {
         if(tag === "GK" && selectedArr.length >= GK_LIMIT) {
@@ -122,7 +121,6 @@ function processSelection(tag, optionId, player_info){
                 alert("You can have maximum of "+DEF_LIMIT+" defence players")
         } else{
             document.querySelector(`[optionid='${optionId}']`).setAttribute('remove','')
-           // document.querySelector(`button[optionid=${optionId}]`).setAttribute('remove','')
             selectedArr.push(optionId)
             widgetsMap.set(tag,selectedArr)
             addToRightPane(tag, optionId, player_info)
