@@ -15,7 +15,8 @@ function addToRightPane(tag, optionId, player_data){
     let container = document.querySelector(`#${tag.toLowerCase()}_container`)
     let div = document.createElement('div')
     div.setAttribute('class','col')
-    div.setAttribute('option_id',optionId)
+    div.setAttribute('option_id', optionId)
+    div.setAttribute('style',"max-width:254px")
 
     div.innerHTML = 
     `<div class="card mb-3" style="max-width: 240px;min-width: 240px;">

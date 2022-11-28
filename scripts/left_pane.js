@@ -12,6 +12,7 @@ function initLiveLike() {
     LiveLike.init({
         clientId: 'mOBYul18quffrBDuq2IACKtVuLbUzXIPye5S3bq5',
       }).then(() => {
+        document.querySelector("#nickname").innerHTML  = LiveLike.userProfile.nickname +"'s Team"
         fetchWidgets()
       });
 }
@@ -105,6 +106,7 @@ function select(optionElm) {
 function processSelection(tag, optionId, player_info){
     let selectedArr = widgetsMap.get(tag)
     let optionIndex = selectedArr.indexOf(optionId)
+
     if( optionIndex != -1){
         selectedArr.splice(optionIndex, 1)
         widgetsMap.set(tag,selectedArr)
@@ -127,4 +129,6 @@ function processSelection(tag, optionId, player_info){
         }
         
     }
+
+    document.querySelector(`#${tag}_Counter`).innerHTML = selectedArr.length
 }

@@ -22,6 +22,10 @@
     content:url("./add.png")   
   }
 
+  .left_pane_container{
+    background-color: white;
+  }
+
   #submit{
     position: absolute;
     width: 128px;
@@ -38,36 +42,37 @@
     <div class="d-flex flex-row">
       <div id="left-pane"class="list-group">
       </div>
-      <div id="right-pane" class="d-flex flex-column">
-        <button id="submit"  style="position:absolute; top:10px; left:60%" disabled> Submit</button>
-        <div style="position:relative;  top:10px; margin-bottom: 40px;">Changdeo's Team</div>
+      <div id="right-pane" style="margin-left:16px" class="d-flex flex-column">
+        <button id="submit"  style="position:absolute; top:10px; left:90%" disabled> Submit</button>
+        <div id="nickname" style="position:relative;  top:10px; margin-bottom: 40px;"></div>
         <div id="GK">
           <h5>GoalKeeper</h5>
-          <div class="container">
+          <h5 id="GK_Counter" style="position:absolute; left:95%"></h5>
+          <div class="container left_pane_container">
             <div id="gk_container" class="row">
             </div>
           </div>
         </div>
         <div id="MID">
           <h5>Midfielders</h5>
-          <div class="container">
+          <h5 id="MID_Counter" style="position:absolute; left:95%"></h5>
+          <div class="container left_pane_container">
             <div id="mid_container" class="row">
             </div>
           </div>
         </div>
         <div id="DEF">
-          <div class="d-flex flex-row">
-            <h5>Defence</h5>
-            <h5>3/3</h5>
-          </div>
-          <div class="container">
+          <h5>Defence</h5>
+          <h5 id="DEF_Counter" style="position:absolute; left:95%"></h5>
+          <div class="container left_pane_container">
             <div id="def_container" class="row">
             </div>
           </div>
         </div>
         <div id="FWD">
           <h5>Forwards</h5>
-          <div class="container">
+          <h5 id="FWD_Counter" style="position:absolute; left:95%"></h5>
+          <div class="container left_pane_container">
             <div id="fwd_container" class="row">
             </div>
           </div>
