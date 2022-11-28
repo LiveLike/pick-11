@@ -17,19 +17,30 @@
   button[remove].left-pane-btn > img{
     content:url("./check_mark.png")   
   }
-  
+
   .left-pane-btn > img{
     content:url("./add.png")   
   }
 
+  #submit{
+    position: absolute;
+    width: 128px;
+    height: 40px;
+    left: 1262px;
+    top: 127px;
+    color: white;
+    background: #5030E5;
+    border-radius: 6px;
+  } 
 </style>
 </head>
 <body>
     <div class="d-flex flex-row">
-      <div id="left-pane" style="float: left;" class="list-group">
+      <div id="left-pane"class="list-group">
       </div>
-      <div id="right-pane" style="float: right;">
-        <button id="submit"> Submit</button>
+      <div id="right-pane" class="d-flex flex-column">
+        <button id="submit"  style="position:absolute; top:10px; left:60%" disabled> Submit</button>
+        <div style="position:relative;  top:10px; margin-bottom: 40px;">Changdeo's Team</div>
         <div id="GK">
           <h5>GoalKeeper</h5>
           <div class="container">
