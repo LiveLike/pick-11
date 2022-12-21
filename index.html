@@ -1,91 +1,198 @@
 <!DOCTYPE html>
-<head>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.3/html-to-image.min.js" integrity="sha512-QxqDlz0XgD3yDbMYr8U7H4WpbPewHNFExffq5blMiTZHfNXXsXT2JrIaF8FYqMBrX7OdILft/0vwjyp7FeK/Ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
+      integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
-  integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
-  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-<!-- CSS only -->
-<script src="https://unpkg.com/@livelike/engagementsdk/livelike.umd.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-<script src="./scripts/right_pane.js"></script>
-<script src="./scripts/left_pane.js"></script>
-
-<style>
-  button[remove].left-pane-btn > img{
-    content:url("./check_mark.png")   
-  }
-
-  .left-pane-btn > img{
-    content:url("./add.png")   
-  }
-
-  .left_pane_container{
-    background-color: white;
-  }
-
-  #submit{
-    position: absolute;
-    width: 128px;
-    height: 40px;
-    left: 1262px;
-    top: 127px;
-    color: white;
-    background: #5030E5;
-    border-radius: 6px;
-  } 
-</style>
-</head>
-<body>
-    <div class="d-flex flex-row">
-      <div id="left-pane"class="list-group">
+    <!-- CSS only -->
+    <script src="https://unpkg.com/@livelike/engagementsdk/livelike.umd.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./scripts/right_pane.js"></script>
+    <script src="./scripts/left_pane.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo-block">
+        <h4>Logo</h4>
+        <i
+          class="bi bi-chevron-double-left sidenav-toggle-btn"
+          id="sideNavBtn"
+          onclick="toggle()"
+        ></i>
       </div>
-      <div id="right-pane" style="margin-left:16px" class="d-flex flex-column">
-        <button id="submit"  style="position:absolute; top:10px; left:90%" disabled> Submit</button>
-        <div id="nickname" style="position:relative;  top:10px; margin-bottom: 40px;"></div>
-        <div id="GK">
-          <h5>GoalKeeper</h5>
-          <h5 id="GK_Counter" style="position:absolute; left:95%"></h5>
-          <div class="container left_pane_container">
-            <div id="gk_container" class="row">
+      <div class="user-info">
+        <h5>User Name <span class="user-role">User</span></h5>
+        <img
+          src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
+          height="40"
+          width="40"
+        />
+      </div>
+    </header>
+    <main
+      class="team-list-main-block"
+      id="teamListMainBlock"
+    >
+      <aside class="list-group aside-box">
+        <div class="aside-box-header">
+          <div class="form-box">
+            <div class="search-input">
+              <i class="bi bi-search"></i>
+              <input
+                type="text"
+                class="form-control"
+                id="search"
+                placeholder="Search Players"
+              />
+            </div>
+            <div class="filter-btn">
+              <i class="bi bi-funnel"></i>
             </div>
           </div>
+          <div class="filter-list">
+            <ul>
+              <li>
+                <div class="badge text-bg-purple-border">Forwards</div>
+              </li>
+              <li>
+                <div class="badge text-bg-light-border">GoalKeepers</div>
+              </li>
+              <li>
+                <div class="badge text-bg-light-border">Midfielders</div>
+              </li>
+              <li>
+                <div class="badge text-bg-light-border">Defenders</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="left-pane-block"></div>
+      </aside>
+      <section id="right-pane" class="main-box team-list">
+        <div class="teamlist-header">
+          <div class="name-block">
+            <h2 class="profile_nickname" id="nickname"></h2>
+            <img src="./images/edit-player.jpeg" />
+          </div>
+          <button id="submit" class="submit-btn">Submit</button>
+        </div>
+        <div id="GK">
+          <div
+            class="d-flex justify-content-between align-items-center w-100 mb-2 mt-2"
+          >
+            <h5 class="player-card-title">GoalKeepers</h5>
+            <h5 id="GoalKeeper_Counter"></h5>
+          </div>
+          <div id="goalkeeper_container" class="card-container-block"></div>
         </div>
         <div id="MID">
-          <h5>Midfielders</h5>
-          <h5 id="MID_Counter" style="position:absolute; left:95%"></h5>
-          <div class="container left_pane_container">
-            <div id="mid_container" class="row">
-            </div>
+          <div
+            class="d-flex justify-content-between align-items-center w-100 mb-2 mt-2"
+          >
+            <h5 class="player-card-title">Midfielders</h5>
+            <h5 id="Midfielder_Counter"></h5>
           </div>
+          <div id="midfielder_container" class="card-container-block"></div>
         </div>
         <div id="DEF">
-          <h5>Defence</h5>
-          <h5 id="DEF_Counter" style="position:absolute; left:95%"></h5>
-          <div class="container left_pane_container">
-            <div id="def_container" class="row">
-            </div>
+          <div
+            class="d-flex justify-content-between align-items-center w-100 mb-2 mt-2"
+          >
+            <h5 class="player-card-title">Defenders</h5>
+            <h5 id="Defender_Counter"></h5>
           </div>
+          <div id="defender_container" class="card-container-block"></div>
         </div>
         <div id="FWD">
-          <h5>Forwards</h5>
-          <h5 id="FWD_Counter" style="position:absolute; left:95%"></h5>
-          <div class="container left_pane_container">
-            <div id="fwd_container" class="row">
-            </div>
+          <div
+            class="d-flex justify-content-between align-items-center w-100 mb-2 mt-2"
+          >
+            <h5 class="player-card-title">Forwards</h5>
+            <h5 id="FWD_Counter"></h5>
+          </div>
+          <div id="fwd_container" class="card-container-block"></div>
+        </div>
+      </section>
+    </main>
+    <main class="team-list-main-block team-list-show" style="display:none">
+      <section class="container-block">
+        <div class="teamlist-header" >
+          <div class="name-block">
+            <h2 class="profile_nickname"></h2>
+          </div>
+          <div class="btn-block">
+            <button class="white-outline-btn" id="share-button">
+              <i class="bi bi-people"></i> Share
+            </button>
+            <button id="submit" class="submit-btn" disabled>Edit Team</button>
           </div>
         </div>
-      </div>
-    </div>
+
+        <div class="teamlist-block ">
+          <div class="teamlist-set">
+            <h3>GoalKeepers</h3>
+            <ul class="teamlist-set-list teamlist-goalkeepers">
+            </ul>
+          </div>
+          <div class="teamlist-set">
+            <h3>Defenders</h3>
+            <ul class="teamlist-set-list teamlist-defenders">
+            </ul>
+          </div>
+          <div class="teamlist-set">
+            <h3>Midfielders</h3>
+            <ul class="teamlist-set-list teamlist-midfielders">
+            </ul>
+          </div>
+          <div class="teamlist-set">
+            <h3>Forwards</h3>
+            <ul class="teamlist-set-list teamlist-fwds">
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="scripts/script.js"></script>
     <script>
       data = {
-        programId : "665f9294-71f3-4b49-9beb-b248026d14d0"
-      }
-      widgetsArray = []
-      initLiveLike()
-      document.querySelector("#submit").onclick = submitVotes
+        programId: "665f9294-71f3-4b49-9beb-b248026d14d0",
+      };
+      widgetsArray = [];
+      initLiveLike();
+      document.querySelector("#submit").onclick = submitVotes;
+      document.querySelector("#share-button").onclick = download;
     </script>
-</body>
+  </body>
 </html>
